@@ -14,8 +14,12 @@ services:
         - GID=${GID:-1000}
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - ./src:/var/www/html:delegated
+      - "./dockerfiles/nginx/localhost+2.pem:/etc/nginx/localhost.pem:ro"
+      - "./dockerfiles/nginx/localhost+2-key.pem:/etc/nginx/localhost-key.pem:ro"
+
     depends_on:
       - php
       - redis
